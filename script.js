@@ -1,36 +1,14 @@
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements in the html
-// -----------------------------------------------------------------------
-// function renderLastGrade() {
-//   // Use JSON.parse() to convert text to JavaScript object
-//   var lastGrade = JSON.parse(localStorage.getItem("yourScore"));
-//   // Check if data is returned, if not exit out of the function
-//   if (lastGrade !== null) {
-//   document.getElementById("saved-name").innerHTML = lastGrade.Name;
-//   document.getElementById("saved-grade").innerHTML = (lastGrade.Grade + " %");
-
-//   } else {
-//     return;
-//   }
-// };
 
 
 
 
 $(function () {
-
+  
   var currentHour = dayjs().format('H');
   console.log(currentHour)
   var sections = document.querySelectorAll('form')
-  // var section9 = document.getElementById('09');
-  // var section10 = document.getElementById('10');
-  // var section11 = document.getElementById('11');
-  // var section12 = document.getElementById('12');
-  // var section13 = document.getElementById('13');
-  // var section14 = document.getElementById('14');
-  // var section15 = document.getElementById('15');
-  // var section16 = document.getElementById('16');
-  // var section17 = document.getElementById('17');
+ 
+  var form = $('form')
 console.log(sections)
   // ------------------------------------------------------
 
@@ -49,166 +27,68 @@ console.log(sections)
       $(sections[i]).removeClass("present past").addClass('future')}
     };
 
+    // resets all timeslots to 'future' at 12am each day
+    for (var i = 0; i < sections.length; i++) {
+      if (currentHour == 0) {
+      $(sections[i]).removeClass("present past").addClass('future')}
+    };
 
-
-  //   console.log(sections[i]);}
-  //   if (currentHour = sections[i].id) { (presentFunc(event) {
-  //      $(event.target).removeClass("past future").addClass("present")})};
-  //   };
-// there's definitely a for loop or forEach that'll do this for me but I couldn't figure it out
-  // present-----------------------------------------
-//   if (section9.id == currentHour) {
-//     $(section9).removeClass("past future").addClass('present')
-//   };
-//   if (section10.id == currentHour) {
-//     $(section10).removeClass("past future").addClass('present')
-//   }
-//   if (section11.id == currentHour) {
-//     $(section11).removeClass("past future").addClass('present')
-//   }
-//   if (section12.id == currentHour) {
-//     $(section12).removeClass("past future").addClass('present')
-//   }
-//   if (section13.id == currentHour) {
-//     $(section13).removeClass("past future").addClass('present')
-//   }
-//   if (section14.id == currentHour) {
-//     $(section14).removeClass("past future").addClass('present')
-//   }
-//   if (section15.id == currentHour) {
-//     $(section15).removeClass("past future").addClass('present')
-//   }
-//   if (section16.id == currentHour) {
-//     $(section16).removeClass("past future").addClass('present')
-//   }
-//   if (section17.id == currentHour) {
-//     $(section17).removeClass("past future").addClass('present')
-//   }
-//   //  past--------------------------------------------------
-//   if (section9.id < currentHour) {
-//     $(section9).removeClass("present future").addClass('past')
-//   }
-//   if (section10.id < currentHour) {
-//     $(section10).removeClass("present future").addClass('past')
-//   }
-//   if (section11.id < currentHour) {
-//     $(section11).removeClass("present future").addClass('past')
-//   }
-//   if (section12.id < currentHour) {
-//     $(section12).removeClass("present future").addClass('past')
-//   }
-//   if (section13.id < currentHour) {
-//     $(section13).removeClass("present future").addClass('past')
-//   }
-//   if (section14.id < currentHour) {
-//     $(section14).removeClass("present future").addClass('past')
-//   }
-//   if (section15.id < currentHour) {
-//     $(section15).removeClass("present future").addClass('past')
-//   }
-//   if (section16.id < currentHour) {
-//     $(section16).removeClass("present future").addClass('past')
-//   }
-//   if (section17.id < currentHour) {
-//     $(section17).removeClass("present future").addClass('past')
-//   }
-// // future---------------------------------------------------------
-
-// if (section9.id > currentHour) {
-//   $(section9).removeClass("present past").addClass('future')
-// };
-// if (section10.id > currentHour) {
-//   $(section10).removeClass("present past").addClass('future')
-// }
-// if (section11.id > currentHour) {
-//   $(section11).removeClass("present past").addClass('future')
-// }
-// if (section12.id > currentHour) {
-//   $(section12).removeClass("present past").addClass('future')
-// }
-// if (section13.id > currentHour) {
-//   $(section13).removeClass("present past").addClass('future')
-// }
-// if (section14.id > currentHour) {
-//   $(section14).removeClass("present past").addClass('future')
-// }
-// if (section15.id > currentHour) {
-//   $(section15).removeClass("present past").addClass('future')
-// }
-// if (section16.id > currentHour) {
-//   $(section16).removeClass("present past").addClass('future')
-// }
-// if (section17.id > currentHour) {
-//   $(section17).removeClass("present past").addClass('future')
-// }
-
-console.log('is this thing on?')
 
 
 function renderLastComment() {
-  // Use JSON.parse() to convert text to JavaScript object
-  var lastComment = JSON.parse(localStorage.getItem("comment"));
-  // Check if data is returned, if not exit out of the function
-  if (lastComment !== null) {
-  document.getElementById("input1").innerHTML = lastComment;
+  
+  var savedEvent = localStorage.getItem(parentFormID);
+ console.log(savedEvent)
+  
+  if (savedEvent !== null) {
+    if (parentFormID == form.attr('id')) {
+   form.find('textarea').text(parentFormID.value);}
    
   } else {
     return;
   }
 }
 
-
-// -this needs work but its getting there---------------------------
-
-// // for (var i = 0; i < sections.length; i++) {
-// //   sections[i].addEventListener("submit" , function(event)  {
-// //     event.preventDefault();
-// //     console.log(event.target)
-// //     console.log(sections[i].innerText)
-// //     // var comment = this.value
-// //     // $("textarea", this).text(event.input.value)
-   
-    
-// //     // localStorage.setItem("comment", JSON.stringify(comment));
-// //     // renderLastComment();
-// //     // console.log(comment)
-    
-//     });
-//   }
-// -----------------------------------------------------------------
-
-// this works-----------------------
-var input = document.getElementById('input1')
-var save = document.getElementById('09')
-  save.addEventListener("submit", function(event) {
+var btns = $('.time-block button');
+function storeEvent(event) {
   event.preventDefault();
-  console.log(event)
-  // console.log(this.id)
-  var comment = input.value
+  var btn = $(this);
+  var textArea = btn.prev().val();
+  var parentForm = btn.parent();
+  var parentFormID = parentForm.attr('id');
+  console.log(textArea);
+
+  localStorage.setItem(parentFormID, textArea)
+  var savedEvent = localStorage.getItem(parentFormID);
+  console.log(savedEvent)
+  var keyRef = Object.keys( localStorage)
+  console.log(keyRef)
+
+  renderLastComment()
+ 
+  }
+
+
+
+// for (let key of Object.keys( localStorage)) {
+//   console.log(key)}
+  // console.log(savedEvent)
+  // var schedule = {
+  //   Hour: parentFormID,
+  //   Message: textArea
+  //   };
+  //   console.log(schedule)
+  // localStorage.setItem("schedule", JSON.stringify(schedule));
+  // var savedEvent = localStorage.getItem(schedule);
+  // if (savedEvent !== null) {
+  //       if (schedule.Hour == form.attr('id')) {
+  //      form.find('textarea').text(schedule.Message);}
+//  console.log(savedEvent)
   
-  localStorage.setItem("comment", JSON.stringify(comment));
-  renderLastComment();
-  console.log(comment)
-  
-  });
-//  ================================================
-    // var comment = {
-    //   comment9: input.value.trim(),
-    //   comment10: input.value.trim(),
-    //   comment11: input.value.trim(),
-    //   comment12: input.value.trim(),
-    //   comment13: input.value.trim(),
-    //   comment14: input.value.trim(),
-    //   comment15: input.value.trim(),
-    //   comment16: input.value.trim(),
-    //   comment17: input.value.trim()
-      
-    //   };
-    // console.log(comment9)
-    // localStorage.setItem("comment", JSON.stringify(comment));
-    // renderLastComment();
-    
-    // });
+  //  renderLastComment()
+// }}
+
+btns.click(storeEvent);
 
 
 
